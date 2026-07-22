@@ -1,0 +1,310 @@
+[
+  {
+    "service": "dynamodb",
+    "slug": "Introduction",
+    "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.md",
+    "title": "What is Amazon DynamoDB?",
+    "file": "dynamodb_Introduction.md"
+  },
+  {
+    "service": "dynamodb",
+    "slug": "HowItWorks.CoreComponents",
+    "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.CoreComponents.md",
+    "title": "Core components of Amazon DynamoDB",
+    "file": "dynamodb_HowItWorks.CoreComponents.md"
+  },
+  {
+    "service": "dynamodb",
+    "slug": "HowItWorks.Partitions",
+    "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.Partitions.md",
+    "title": "Partitions and data distribution in DynamoDB",
+    "file": "dynamodb_HowItWorks.Partitions.md"
+  },
+  {
+    "service": "dynamodb",
+    "slug": "HowItWorks.NamingRulesDataTypes",
+    "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.NamingRulesDataTypes.md",
+    "title": "Supported data types and naming rules in Amazon DynamoDB",
+    "file": "dynamodb_HowItWorks.NamingRulesDataTypes.md"
+  },
+  {
+    "service": "dynamodb",
+    "slug": "SQLtoNoSQL",
+    "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/SQLtoNoSQL.md",
+    "title": "Learn how to go from SQL to NoSQL",
+    "file": "dynamodb_SQLtoNoSQL.md"
+  },
+  {
+    "service": "dynamodb",
+    "slug": "SecondaryIndexes",
+    "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/SecondaryIndexes.md",
+    "title": "Improving data access with secondary indexes in DynamoDB",
+    "file": "dynamodb_SecondaryIndexes.md"
+  },
+  {
+    "service": "dynamodb",
+    "slug": "GSI",
+    "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GSI.md",
+    "title": "Using Global Secondary Indexes in DynamoDB",
+    "file": "dynamodb_GSI.md"
+  },
+  {
+    "service": "dynamodb",
+    "slug": "LSI",
+    "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LSI.md",
+    "title": "Local secondary indexes",
+    "file": "dynamodb_LSI.md"
+  },
+  {
+    "service": "dynamodb",
+    "slug": "WorkingWithItems",
+    "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithItems.md",
+    "title": "Working with items and attributes in DynamoDB",
+    "file": "dynamodb_WorkingWithItems.md"
+  },
+  {
+    "service": "dynamodb",
+    "slug": "WorkingWithTables.Basics",
+    "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.Basics.md",
+    "title": "Basic operations on DynamoDB tables",
+    "file": "dynamodb_WorkingWithTables.Basics.md"
+  },
+  {
+    "service": "dynamodb",
+    "slug": "Query",
+    "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Query.md",
+    "title": "Querying tables in DynamoDB",
+    "file": "dynamodb_Query.md"
+  },
+  {
+    "service": "dynamodb",
+    "slug": "Scan",
+    "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Scan.md",
+    "title": "Scanning tables in DynamoDB",
+    "file": "dynamodb_Scan.md"
+  },
+  {
+    "service": "dynamodb",
+    "slug": "bp-partition-key-design",
+    "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-partition-key-design.md",
+    "title": "Best practices for designing and using partition keys effectively in DynamoDB",
+    "file": "dynamodb_bp-partition-key-design.md"
+  },
+  {
+    "service": "dynamodb",
+    "slug": "bp-indexes",
+    "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-indexes.md",
+    "title": "Best practices for using secondary indexes in DynamoDB",
+    "file": "dynamodb_bp-indexes.md"
+  },
+  {
+    "service": "dynamodb",
+    "slug": "bp-query-scan",
+    "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-query-scan.md",
+    "title": "Best practices for querying and scanning data in DynamoDB",
+    "file": "dynamodb_bp-query-scan.md"
+  },
+  {
+    "service": "dynamodb",
+    "slug": "DynamoDBMapper.OptimisticLocking",
+    "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBMapper.OptimisticLocking.md",
+    "title": "DynamoDB and optimistic locking with version number",
+    "file": "dynamodb_DynamoDBMapper.OptimisticLocking.md"
+  },
+  {
+    "service": "dynamodb",
+    "slug": "Expressions.ConditionExpressions",
+    "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.ConditionExpressions.md",
+    "title": "DynamoDB condition expression CLI example",
+    "file": "dynamodb_Expressions.ConditionExpressions.md"
+  },
+  {
+    "service": "dynamodb",
+    "slug": "Expressions.UpdateExpressions",
+    "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.UpdateExpressions.md",
+    "title": "Using update expressions in DynamoDB",
+    "file": "dynamodb_Expressions.UpdateExpressions.md"
+  },
+  {
+    "service": "dynamodb",
+    "slug": "ServiceQuotas",
+    "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ServiceQuotas.md",
+    "title": "Quotas in Amazon DynamoDB",
+    "file": "dynamodb_ServiceQuotas.md"
+  },
+  {
+    "service": "dynamodb",
+    "slug": "Streams",
+    "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.md",
+    "title": "Change data capture for DynamoDB Streams",
+    "file": "dynamodb_Streams.md"
+  },
+  {
+    "service": "dynamodb",
+    "slug": "GlobalTables",
+    "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GlobalTables.md",
+    "title": "Global tables - multi-active, multi-Region replication",
+    "file": "dynamodb_GlobalTables.md"
+  },
+  {
+    "service": "dynamodb",
+    "slug": "backuprestore_HowItWorks",
+    "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/backuprestore_HowItWorks.md",
+    "title": "Using on-demand DynamoDB backup and restore",
+    "file": "dynamodb_backuprestore_HowItWorks.md"
+  },
+  {
+    "service": "dynamodb",
+    "slug": "DAX",
+    "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.md",
+    "title": "In-memory acceleration with DynamoDB Accelerator (DAX)",
+    "file": "dynamodb_DAX.md"
+  },
+  {
+    "service": "lambda",
+    "slug": "welcome",
+    "url": "https://docs.aws.amazon.com/lambda/latest/dg/welcome.md",
+    "title": "What is AWS Lambda?",
+    "file": "lambda_welcome.md"
+  },
+  {
+    "service": "lambda",
+    "slug": "lambda-invocation",
+    "url": "https://docs.aws.amazon.com/lambda/latest/dg/lambda-invocation.md",
+    "title": "Understanding Lambda function invocation methods",
+    "file": "lambda_lambda-invocation.md"
+  },
+  {
+    "service": "lambda",
+    "slug": "invocation-sync",
+    "url": "https://docs.aws.amazon.com/lambda/latest/dg/invocation-sync.md",
+    "title": "Invoke a Lambda function synchronously",
+    "file": "lambda_invocation-sync.md"
+  },
+  {
+    "service": "lambda",
+    "slug": "invocation-async",
+    "url": "https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.md",
+    "title": "Invoking a Lambda function asynchronously",
+    "file": "lambda_invocation-async.md"
+  },
+  {
+    "service": "lambda",
+    "slug": "invocation-eventsourcemapping",
+    "url": "https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventsourcemapping.md",
+    "title": "How Lambda processes records from stream and queue-based event sources",
+    "file": "lambda_invocation-eventsourcemapping.md"
+  },
+  {
+    "service": "lambda",
+    "slug": "configuration-envvars",
+    "url": "https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.md",
+    "title": "Working with Lambda environment variables",
+    "file": "lambda_configuration-envvars.md"
+  },
+  {
+    "service": "lambda",
+    "slug": "configuration-concurrency",
+    "url": "https://docs.aws.amazon.com/lambda/latest/dg/configuration-concurrency.md",
+    "title": "Configuring reserved concurrency for a function",
+    "file": "lambda_configuration-concurrency.md"
+  },
+  {
+    "service": "lambda",
+    "slug": "lambda-runtimes",
+    "url": "https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.md",
+    "title": "Lambda runtimes",
+    "file": "lambda_lambda-runtimes.md"
+  },
+  {
+    "service": "lambda",
+    "slug": "lambda-permissions",
+    "url": "https://docs.aws.amazon.com/lambda/latest/dg/lambda-permissions.md",
+    "title": "Managing permissions in AWS Lambda",
+    "file": "lambda_lambda-permissions.md"
+  },
+  {
+    "service": "lambda",
+    "slug": "access-control-resource-based",
+    "url": "https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.md",
+    "title": "Viewing resource-based IAM policies in Lambda",
+    "file": "lambda_access-control-resource-based.md"
+  },
+  {
+    "service": "lambda",
+    "slug": "configuration-versions",
+    "url": "https://docs.aws.amazon.com/lambda/latest/dg/configuration-versions.md",
+    "title": "Manage Lambda function versions",
+    "file": "lambda_configuration-versions.md"
+  },
+  {
+    "service": "lambda",
+    "slug": "configuration-aliases",
+    "url": "https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.md",
+    "title": "Create an alias for a Lambda function",
+    "file": "lambda_configuration-aliases.md"
+  },
+  {
+    "service": "lambda",
+    "slug": "monitoring-cloudwatchlogs",
+    "url": "https://docs.aws.amazon.com/lambda/latest/dg/monitoring-cloudwatchlogs.md",
+    "title": "Sending Lambda function logs to CloudWatch Logs",
+    "file": "lambda_monitoring-cloudwatchlogs.md"
+  },
+  {
+    "service": "lambda",
+    "slug": "invocation-retries",
+    "url": "https://docs.aws.amazon.com/lambda/latest/dg/invocation-retries.md",
+    "title": "Understanding retry behavior in Lambda",
+    "file": "lambda_invocation-retries.md"
+  },
+  {
+    "service": "s3",
+    "slug": "Welcome",
+    "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.md",
+    "title": "What is Amazon S3?",
+    "file": "s3_Welcome.md"
+  },
+  {
+    "service": "s3",
+    "slug": "UsingBucket",
+    "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingBucket.md",
+    "title": "General purpose buckets overview",
+    "file": "s3_UsingBucket.md"
+  },
+  {
+    "service": "s3",
+    "slug": "creating-buckets-s3",
+    "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-buckets-s3.md",
+    "title": "Creating, configuring, and working with Amazon S3 general purpose buckets",
+    "file": "s3_creating-buckets-s3.md"
+  },
+  {
+    "service": "s3",
+    "slug": "storage-class-intro",
+    "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.md",
+    "title": "Understanding and managing Amazon S3 storage classes",
+    "file": "s3_storage-class-intro.md"
+  },
+  {
+    "service": "s3",
+    "slug": "object-lifecycle-mgmt",
+    "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lifecycle-mgmt.md",
+    "title": "Managing the lifecycle of objects",
+    "file": "s3_object-lifecycle-mgmt.md"
+  },
+  {
+    "service": "s3",
+    "slug": "versioning-workflows",
+    "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/versioning-workflows.md",
+    "title": "How S3 Versioning works",
+    "file": "s3_versioning-workflows.md"
+  },
+  {
+    "service": "s3",
+    "slug": "bucketnamingrules",
+    "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.md",
+    "title": "General purpose bucket naming rules",
+    "file": "s3_bucketnamingrules.md"
+  }
+]
