@@ -1,13 +1,28 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
 [project]
 name = "aws-rag-eval"
 version = "0.1.0"
-description = "Add your description here"
+description = "RAG evaluation harness over AWS developer documentation"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "anthropic>=0.121.0",
     "chromadb>=1.5.9",
     "numpy>=2.5.1",
     "plotly>=6.9.0",
     "requests>=2.34.2",
     "scikit-learn>=1.9.0",
+    "sentence-transformers>=5.7.0",
 ]
+
+[project.scripts]
+aws-rag-ingest = "aws_rag_eval.ingest:main"
+aws-rag-grid = "aws_rag_eval.eval.grid:main"
+aws-rag-recall = "aws_rag_eval.eval.recall:main"
+aws-rag-faithfulness = "aws_rag_eval.faithfulness:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["aws_rag_eval"]

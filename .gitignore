@@ -8,3 +8,10 @@ wheels/
 
 # Virtual environments
 .venv
+
+# Local secrets and generated data
+.env
+chroma_db/
+
+# Dev notes
+log.md
