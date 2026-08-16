@@ -6,14 +6,13 @@ import os
 import json, datetime
 import uuid
 from pathlib import Path
+import boto3
 
-current_dir = os.path.dirname(os.path.abspath(__file__))
-project_root = os.path.dirname(current_dir)
-target_path = os.path.join(project_root, "aws_rag_eval")
+s3 = boto3.client("s3")
+BUCKET = "aryan-rag-logs"
+
 
 HTML_PATH = Path(__file__).parent / "index.html"
-
-sys.path.insert(0, target_path)
 
 from aws_rag_eval.rag import answer
 
@@ -34,8 +33,7 @@ def ask(q:Query):
     query_id = str(uuid.uuid4())
     text, chunks, rewritten = answer(q.question)
     
-    with open("query_log.jsonl","a") as f:
-        f.write(json.dumps({
+    record = {
             "query_id": query_id,
             "ts": datetime.datetime.now().isoformat(),
             "question":q.question,
@@ -43,7 +41,18 @@ def ask(q:Query):
             "distances": [c['distance'] for c in chunks],
             "rewrite":rewritten,
             "answer":text,
-        }) + "\n")
+        }
+    key = f"logs/{datetime.date.today()}/{query_id}.json"
+
+    try:
+        s3.put_object(
+            Bucket=BUCKET,
+            Key=key,
+            Body=json.dumps(record),
+            ContentType="application/json",
+        )
+    except Exception as e:
+        print(f"S3 log failed: {e}")   # visible in Render logs
 
     return {
         "query_id":query_id,
@@ -59,11 +68,19 @@ def home():
 
 @app.post("/feedback")
 def feedback(f: Feedback):
-    with open("feedback.jsonl", "a") as fh:
-        fh.write(json.dumps({
-            "ts": datetime.datetime.now().isoformat(),
-            "query_id": f.query_id,
-            "verdict": f.verdict,
-        })+ "\n")
+    record = {
+        "ts": datetime.datetime.now().isoformat(),
+        "query_id": f.query_id,
+        "verdict": f.verdict,
+    }
+    key = f"feedback/{datetime.date.today()}/{f.query_id}.json"
+    try:
+        s3.put_object(
+            Bucket=BUCKET, 
+            Key=key, Body=json.dumps(record),
+            ContentType="application/json")
+    except Exception as e:
+        print(f"S3 feedback log failed: {e}")
+
     return {"ok": True}
 
