@@ -37,7 +37,7 @@ def main() -> None:
     scores = []
 
     for q in questions:
-        a, chunks = answer(q["question"])
+        a, chunks, _ = answer(q["question"])
         verdict = judge_faithfulness(a, chunks)
         scores.append(verdict["score"])
         if verdict["score"] == 0:

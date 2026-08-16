@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en" class="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AWS Docs RAG — Chat</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          accent: {
+            DEFAULT: "#f97316",
+            light: "#fb923c",
+          },
+        },
+      },
+    },
+  };
+</script>
+<style>
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #52525b; border-radius: 9999px; }
+
+  @keyframes blink {
+    0%, 80%, 100% { opacity: 0.2; }
+    40% { opacity: 1; }
+  }
+  .dot { animation: blink 1.4s infinite both; }
+  .dot:nth-child(2) { animation-delay: 0.2s; }
+  .dot:nth-child(3) { animation-delay: 0.4s; }
+</style>
+</head>
+<body class="h-screen flex items-center justify-center bg-zinc-900 text-zinc-100 font-sans antialiased p-4">
+
+  <div class="w-full max-w-5xl h-[92vh] flex flex-col rounded-2xl border-2 border-zinc-700 bg-zinc-950 shadow-2xl overflow-hidden">
+
+    <header class="shrink-0 border-b-2 border-zinc-700 bg-zinc-950 px-5 py-3 flex items-center gap-3">
+      <div class="h-10 w-10 rounded-lg bg-accent flex items-center justify-center font-bold text-xl text-zinc-950">A</div>
+      <div>
+        <h1 class="text-lg font-bold leading-tight">AWS Docs RAG</h1>
+        <p class="text-sm text-zinc-500 leading-tight">Ask about DynamoDB, Lambda, or S3</p>
+      </div>
+    </header>
+
+    <main id="messages" class="flex-1 overflow-y-auto px-5 py-3 space-y-3 w-full">
+      <div class="flex justify-start">
+        <div class="max-w-[80%] rounded-2xl rounded-bl-sm bg-zinc-800 px-4 py-3 text-base leading-snug text-zinc-200">
+          Ask me anything about the AWS docs in the corpus (DynamoDB, Lambda, S3).
+        </div>
+      </div>
+    </main>
+
+    <footer class="shrink-0 border-t-2 border-zinc-700 bg-zinc-950 px-5 py-3">
+      <form id="chat-form" class="w-full flex items-end gap-2">
+        <textarea
+          id="question"
+          rows="1"
+          placeholder="Ask a question…"
+          class="flex-1 resize-none rounded-xl bg-zinc-900 border border-zinc-700 px-4 py-3 text-base text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-accent/60"
+        ></textarea>
+        <button
+          id="send-btn"
+          type="submit"
+          class="shrink-0 rounded-xl bg-accent hover:bg-accent-light disabled:opacity-40 disabled:cursor-not-allowed text-zinc-950 font-semibold text-base px-5 py-3 transition-colors"
+        >
+          Send
+        </button>
+      </form>
+    </footer>
+
+  </div>
+
+  <div id="results" class="hidden"></div>
+
+  <script>
+    const form = document.getElementById("chat-form");
+    const textarea = document.getElementById("question");
+    const sendBtn = document.getElementById("send-btn");
+    const messages = document.getElementById("messages");
+    const results = document.getElementById("results");
+
+    function scrollToBottom() {
+      messages.scrollTop = messages.scrollHeight;
+    }
+
+    function addUserBubble(text) {
+      const wrap = document.createElement("div");
+      wrap.className = "flex justify-end";
+      wrap.innerHTML = `
+        <div class="max-w-[80%] rounded-2xl rounded-br-sm bg-accent text-zinc-950 px-4 py-3 text-base leading-snug font-medium whitespace-pre-wrap"></div>
+      `;
+      wrap.firstElementChild.textContent = text;
+      messages.appendChild(wrap);
+      scrollToBottom();
+    }
+
+    function addTypingBubble() {
+      const wrap = document.createElement("div");
+      wrap.className = "flex justify-start";
+      wrap.id = "typing-indicator";
+      wrap.innerHTML = `
+        <div class="rounded-2xl rounded-bl-sm bg-zinc-800 px-4 py-3 flex gap-1">
+          <span class="dot h-1.5 w-1.5 rounded-full bg-zinc-400"></span>
+          <span class="dot h-1.5 w-1.5 rounded-full bg-zinc-400"></span>
+          <span class="dot h-1.5 w-1.5 rounded-full bg-zinc-400"></span>
+        </div>
+      `;
+      messages.appendChild(wrap);
+      scrollToBottom();
+    }
+
+    function removeTypingBubble() {
+      document.getElementById("typing-indicator")?.remove();
+    }
+
+    async function sendFeedback(queryId, verdict, container) {
+      const upBtn = container.querySelector('[data-vote="up"]');
+      const downBtn = container.querySelector('[data-vote="down"]');
+      upBtn.disabled = true;
+      downBtn.disabled = true;
+
+      try {
+        const response = await fetch("/feedback", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ query_id: queryId, verdict }),
+        });
+        if (!response.ok) throw new Error(`Request failed (${response.status})`);
+
+        const votedBtn = verdict === "up" ? upBtn : downBtn;
+        const otherBtn = verdict === "up" ? downBtn : upBtn;
+        votedBtn.classList.add("bg-accent/20", "border-accent", "ring-1", "ring-accent", "opacity-100");
+        votedBtn.classList.remove("hover:bg-zinc-700");
+        otherBtn.classList.add("opacity-30");
+        otherBtn.classList.remove("hover:bg-zinc-700");
+      } catch (err) {
+        upBtn.disabled = false;
+        downBtn.disabled = false;
+        console.error("Feedback failed:", err);
+      }
+    }
+
+    function addFeedbackButtons(bubble, queryId) {
+      if (!queryId) return;
+
+      const bar = document.createElement("div");
+      bar.className = "mt-2 flex gap-1.5";
+      bar.innerHTML = `
+        <button type="button" data-vote="up" class="feedback-btn rounded-full border border-zinc-600 text-sm px-2 py-1 hover:bg-zinc-700 disabled:cursor-not-allowed transition-colors">👍</button>
+        <button type="button" data-vote="down" class="feedback-btn rounded-full border border-zinc-600 text-sm px-2 py-1 hover:bg-zinc-700 disabled:cursor-not-allowed transition-colors">👎</button>
+      `;
+      bar.querySelectorAll("[data-vote]").forEach((btn) => {
+        btn.addEventListener("click", () => sendFeedback(queryId, btn.dataset.vote, bar));
+      });
+      bubble.appendChild(bar);
+    }
+
+    function addBotBubble(answerText, sources, rewritten, queryId) {
+      const wrap = document.createElement("div");
+      wrap.className = "flex justify-start";
+      if (queryId) wrap.dataset.queryId = queryId;
+
+      const bubble = document.createElement("div");
+      bubble.className = "max-w-[80%] rounded-2xl rounded-bl-sm bg-zinc-800 px-4 py-3 text-base leading-snug text-zinc-100";
+
+      if (rewritten) {
+        const rewrite = document.createElement("div");
+        rewrite.className = "mb-2 pb-2 border-b border-zinc-700 text-sm italic text-zinc-400";
+        rewrite.textContent = `Searched for: ${rewritten}`;
+        bubble.appendChild(rewrite);
+      }
+
+      const answer = document.createElement("div");
+      answer.className = "whitespace-pre-wrap";
+      answer.textContent = answerText;
+      bubble.appendChild(answer);
+
+      wrap.appendChild(bubble);
+
+      if (sources && sources.length) {
+        const src = document.createElement("div");
+        src.className = "mt-2 flex flex-wrap gap-1.5";
+        [...new Set(sources)].forEach((s) => {
+          const chip = document.createElement("span");
+          chip.className = "text-xs font-medium rounded-full border border-zinc-600 text-zinc-300 px-2.5 py-1";
+          chip.textContent = s;
+          src.appendChild(chip);
+        });
+        bubble.appendChild(src);
+      }
+
+      addFeedbackButtons(bubble, queryId);
+
+      messages.appendChild(wrap);
+      scrollToBottom();
+    }
+
+    function addErrorBubble(message) {
+      const wrap = document.createElement("div");
+      wrap.className = "flex justify-start";
+      wrap.innerHTML = `
+        <div class="max-w-[80%] rounded-2xl rounded-bl-sm bg-red-950/60 border border-red-900 px-4 py-3 text-base text-red-300"></div>
+      `;
+      wrap.firstElementChild.textContent = message;
+      messages.appendChild(wrap);
+      scrollToBottom();
+    }
+
+    async function ask(question) {
+      const response = await fetch("/ask", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Request failed (${response.status})`);
+      }
+
+      const data = await response.json();
+      results.textContent = JSON.stringify(data);
+      return data;
+    }
+
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const question = textarea.value.trim();
+      if (!question) return;
+
+      addUserBubble(question);
+      textarea.value = "";
+      textarea.style.height = "auto";
+      sendBtn.disabled = true;
+      addTypingBubble();
+
+      try {
+        const data = await ask(question);
+        removeTypingBubble();
+        const isRefusal = data.answer.startsWith("Not in the provided documentation");
+        if (!isRefusal) {
+          addBotBubble(data.answer, data.sources, data.rewrite, data.query_id);
+        }else{
+          addBotBubble(data.answer, undefined, data.rewrite, data.query_id);
+        }
+      } catch (err) {
+        removeTypingBubble();
+        addErrorBubble(`Something went wrong: ${err.message}`);
+      } finally {
+        sendBtn.disabled = false;
+        textarea.focus();
+      }
+    });
+
+    textarea.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" && !event.shiftKey) {
+        event.preventDefault();
+        form.requestSubmit();
+      }
+    });
+
+    textarea.addEventListener("input", () => {
+      textarea.style.height = "auto";
+      textarea.style.height = Math.min(textarea.scrollHeight, 160) + "px";
+    });
+  </script>
+</body>
+</html>

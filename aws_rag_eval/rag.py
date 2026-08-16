@@ -1,6 +1,7 @@
 from anthropic import Anthropic
 
 from aws_rag_eval.retrieve import retrieve
+from aws_rag_eval.query_rewriting import rewrite_query
 
 client = Anthropic()
 
@@ -15,14 +16,15 @@ def build_prompt(question, chunks):
 
 
 def answer(question) -> tuple[str, list[dict]]:
-    chunks = retrieve(question, k=5, rewrite_on=True)
+    rewritten = rewrite_query(question)
+    chunks = retrieve(rewritten, k=5)
     prompt = build_prompt(question, chunks)
     response = client.messages.create(
         model="claude-sonnet-4-5",
         max_tokens=500,
         messages=[{"role": "user", "content": prompt}],
     )
-    return response.content[0].text.strip(), chunks
+    return response.content[0].text.strip(), chunks, rewritten
 
 
 if __name__ == "__main__":
