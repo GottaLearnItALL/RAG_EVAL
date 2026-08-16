@@ -6,7 +6,6 @@ annotated-types==0.8.0
 anthropic==0.121.0
 anyio==4.14.2
 attrs==26.1.0
--e file:///Users/aryanbhat/projects/AWS_RAG_EVAL
 bcrypt==5.0.0
 build==1.5.0
 certifi==2026.6.17
