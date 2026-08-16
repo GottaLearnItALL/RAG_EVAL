@@ -10,6 +10,8 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 project_root = os.path.dirname(current_dir)
 target_path = os.path.join(project_root, "aws_rag_eval")
 
+HTML_PATH = Path(__file__).parent / "index.html"
+
 sys.path.insert(0, target_path)
 
 from aws_rag_eval.rag import answer
@@ -51,7 +53,7 @@ def ask(q:Query):
 
 @app.get("/")
 def home():
-    return FileResponse("index.html")
+    return FileResponse(HTML_PATH)
 
 
 @app.post("/feedback")
