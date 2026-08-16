@@ -14,3 +14,4 @@ wheels/
 
 # Dev notes
 log.md
+.venv/
