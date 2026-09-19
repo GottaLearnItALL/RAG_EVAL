@@ -28,11 +28,11 @@ To read an item from the table, you must specify the partition key value for the
 
 The following diagram shows a table named *Pets*, which spans multiple partitions. The table's primary key is *AnimalType* (only this key attribute is shown). DynamoDB uses its hash function to determine where to store a new item, in this case based on the hash value of the string *Dog*. Note that the items are not stored in sorted order. Each item's location is determined by the hash value of its partition key.
 
-![DynamoDB's distribution of table items across partitions based on the partition key's hash value.](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/images/HowItWorksPartitionKey.png)
+![DynamoDB's distribution of table items across partitions based on the partition key's hash value.](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/images/HowItWorksPartitionKey.png)
 
 
 **Note**  
-DynamoDB is optimized for uniform distribution of items across a table's partitions, no matter how many partitions there may be. We recommend that you choose a partition key that can have a large number of distinct values relative to the number of items in the table.
+DynamoDB is optimized for uniform distribution of items across a table's partitions, no matter how many partitions there might be. We recommend that you choose a partition key that can have a large number of distinct values relative to the number of items in the table.
 
 ## Data distribution: Partition key and sort key
 <a name="HowItWorks.Partitions.CompositeKey"></a>
@@ -47,7 +47,7 @@ You can read multiple items from the table in a single operation (`Query`) if th
 
 Suppose that the *Pets* table has a composite primary key consisting of *AnimalType* (partition key) and *Name* (sort key). The following diagram shows DynamoDB writing an item with a partition key value of *Dog* and a sort key value of *Fido*.
 
-![DynamoDB stores an item with a composite partition key and sorts the item using the sort key attribute's value.](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/images/HowItWorksPartitionKeySortKey.png)
+![DynamoDB stores an item with a composite partition key and sorts the item using the sort key attribute's value.](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/images/HowItWorksPartitionKeySortKey.png)
 
 
 To read that same item from the *Pets* table, DynamoDB calculates the hash value of *Dog*, yielding the partition in which these items are stored. DynamoDB then scans the sort key attribute values until it finds *Fido*.

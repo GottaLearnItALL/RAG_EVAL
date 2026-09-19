@@ -32,10 +32,10 @@ The arguments for `--item` are stored in the `item.json` file. (For simplicity, 
 
 The `PutItem` operation overwrites an item with the same primary key (if it exists). If you want to avoid this, use a condition expression. This allows the write to proceed only if the item in question does not already have the same primary key.
 
-The following example uses `attribute_not_exists()` to check whether the primary key exists in the table before attempting the write operation. 
+The following example uses `attribute_not_exists()` to check whether an item with the same primary key already exists before attempting the write. DynamoDB evaluates a condition expression on a write operation against the item identified by the request's key, so `attribute_not_exists(Id)` is true only when no item with that `Id` value already exists. When it is true, the write proceeds; when an item with that key already exists, the condition is false and DynamoDB rejects the write, which prevents an overwrite.
 
 **Note**  
-If your primary key consists of both a partition key(pk) and a sort key(sk), the parameter will check whether `attribute_not_exists(pk)` AND `attribute_not_exists(sk)` evaluate to true or false as an entire statement before attempting the write operation.
+For a table with a composite primary key (a partition key and a sort key), DynamoDB still evaluates the condition against the single item identified by both key values. Testing `attribute_not_exists()` on a key attribute—for example `attribute_not_exists(pk)`—is true only when no item with that partition key and sort key already exists, so it prevents overwriting that item.
 
 ```
 aws dynamodb put-item \

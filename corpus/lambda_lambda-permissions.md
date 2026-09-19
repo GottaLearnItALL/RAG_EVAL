@@ -5,7 +5,7 @@
 
 You can use AWS Identity and Access Management (IAM) to manage permissions in AWS Lambda. There are two main categories of permissions that you need to consider when working with Lambda functions:
 + Permissions that your Lambda functions need to perform API actions and access other AWS resources
-+ Permissions that other AWS users and entities need to access your Lambda functions
++ Permissions that other AWS users and entities need to access your Lambda functions. For more information, see [Granting other AWS entities access to your Lambda functions](permissions-granting-access.md).
 
 Lambda functions often need to access other AWS resources, and perform various API operations on those resources. For example, you might have a Lambda function that responds to an event by updating entries in an Amazon DynamoDB database. In this case, your function needs permissions to access the database, as well as permissions to put or update items in that database.
 

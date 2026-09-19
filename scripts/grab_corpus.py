@@ -92,6 +92,32 @@ SERVICES = [
             "IAmazonS3",
         ],
     ),
+    (
+        "apigateway",
+        "https://docs.aws.amazon.com/apigateway/latest/developerguide/",
+        [
+            "welcome",
+            "api-gateway-basic-concept",
+            "http-api-vs-rest",
+            "set-up-lambda-integrations",
+            "set-up-lambda-proxy-integrations",
+            "set-up-lambda-custom-integrations",
+            "set-up-lambda-integration-async",
+            "handle-errors-in-lambda-integration",
+            "apigateway-use-lambda-authorizer",
+            "configure-api-gateway-lambda-authorization",
+            "http-api-develop-integrations-lambda",
+            "http-api-troubleshooting-lambda",
+            "apigateway-control-access-to-api",
+            "apigateway-resource-policies",
+            "permissions",
+            "api-gateway-request-throttling",
+            "api-gateway-caching",
+            "how-to-cors",
+            "api-gateway-api-integration-types",
+            "api-gateway-swagger-extensions-integration"
+        ],
+    ),
 ]
 
 HEADERS = {

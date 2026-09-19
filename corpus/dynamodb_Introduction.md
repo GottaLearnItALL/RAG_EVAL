@@ -112,7 +112,7 @@ Integrating DynamoDB with Amazon S3 enables you to easily export data to an Amaz
 ### Zero-ETL integration
 <a name="ddb-service-integrations-zetl"></a>
 
-DynamoDB supports [zero-ETL integration with Amazon Redshift](https://docs.aws.amazon.com/redshift/latest/mgmt/zero-etl-using.html) and [Using an OpenSearch Ingestion pipeline with Amazon DynamoDB](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/configure-client-ddb.html). These integrations enable you to run complex analytics and use advanced search capabilities on your DynamoDB table data. For example, you can perform full-text and vector search, and semantic search on your DynamoDB data. Zero-ETL integrations have no impact on production workloads running on DynamoDB.
+DynamoDB supports [zero-ETL integration with Amazon Redshift](https://docs.aws.amazon.com/redshift/latest/mgmt/zero-etl-using.html) and [Using an OpenSearch Ingestion pipeline with Amazon DynamoDB](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/configure-client-ddb.html). With these integrations, you can run complex analytics and use advanced search capabilities on your DynamoDB table data. Zero-ETL integrations have no impact on production workloads running on DynamoDB.
 
 ### Caching
 <a name="ddb-service-integrations-caching"></a>

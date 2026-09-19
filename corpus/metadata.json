@@ -227,7 +227,7 @@
     "service": "lambda",
     "slug": "access-control-resource-based",
     "url": "https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.md",
-    "title": "Viewing resource-based IAM policies in Lambda",
+    "title": "Working with resource-based policies in Lambda",
     "file": "lambda_access-control-resource-based.md"
   },
   {
@@ -306,5 +306,145 @@
     "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.md",
     "title": "General purpose bucket naming rules",
     "file": "s3_bucketnamingrules.md"
+  },
+  {
+    "service": "apigateway",
+    "slug": "welcome",
+    "url": "https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.md",
+    "title": "What is Amazon API Gateway?",
+    "file": "apigateway_welcome.md"
+  },
+  {
+    "service": "apigateway",
+    "slug": "api-gateway-basic-concept",
+    "url": "https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-basic-concept.md",
+    "title": "Amazon API Gateway concepts",
+    "file": "apigateway_api-gateway-basic-concept.md"
+  },
+  {
+    "service": "apigateway",
+    "slug": "http-api-vs-rest",
+    "url": "https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-vs-rest.md",
+    "title": "Choose between REST APIs and HTTP APIs",
+    "file": "apigateway_http-api-vs-rest.md"
+  },
+  {
+    "service": "apigateway",
+    "slug": "set-up-lambda-integrations",
+    "url": "https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-integrations.md",
+    "title": "Lambda integrations for REST APIs in API Gateway",
+    "file": "apigateway_set-up-lambda-integrations.md"
+  },
+  {
+    "service": "apigateway",
+    "slug": "set-up-lambda-proxy-integrations",
+    "url": "https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.md",
+    "title": "Lambda proxy integrations in API Gateway",
+    "file": "apigateway_set-up-lambda-proxy-integrations.md"
+  },
+  {
+    "service": "apigateway",
+    "slug": "set-up-lambda-custom-integrations",
+    "url": "https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-custom-integrations.md",
+    "title": "Set up Lambda custom integrations in API Gateway",
+    "file": "apigateway_set-up-lambda-custom-integrations.md"
+  },
+  {
+    "service": "apigateway",
+    "slug": "set-up-lambda-integration-async",
+    "url": "https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-integration-async.md",
+    "title": "Set up asynchronous invocation of the backend Lambda function",
+    "file": "apigateway_set-up-lambda-integration-async.md"
+  },
+  {
+    "service": "apigateway",
+    "slug": "handle-errors-in-lambda-integration",
+    "url": "https://docs.aws.amazon.com/apigateway/latest/developerguide/handle-errors-in-lambda-integration.md",
+    "title": "Handle Lambda errors in API Gateway",
+    "file": "apigateway_handle-errors-in-lambda-integration.md"
+  },
+  {
+    "service": "apigateway",
+    "slug": "apigateway-use-lambda-authorizer",
+    "url": "https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-use-lambda-authorizer.md",
+    "title": "Use API Gateway Lambda authorizers",
+    "file": "apigateway_apigateway-use-lambda-authorizer.md"
+  },
+  {
+    "service": "apigateway",
+    "slug": "configure-api-gateway-lambda-authorization",
+    "url": "https://docs.aws.amazon.com/apigateway/latest/developerguide/configure-api-gateway-lambda-authorization.md",
+    "title": "Configure an API Gateway Lambda authorizer",
+    "file": "apigateway_configure-api-gateway-lambda-authorization.md"
+  },
+  {
+    "service": "apigateway",
+    "slug": "http-api-develop-integrations-lambda",
+    "url": "https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-lambda.md",
+    "title": "Create AWS Lambda proxy integrations for HTTP APIs in API Gateway",
+    "file": "apigateway_http-api-develop-integrations-lambda.md"
+  },
+  {
+    "service": "apigateway",
+    "slug": "http-api-troubleshooting-lambda",
+    "url": "https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-troubleshooting-lambda.md",
+    "title": "Troubleshooting issues with HTTP API Lambda integrations",
+    "file": "apigateway_http-api-troubleshooting-lambda.md"
+  },
+  {
+    "service": "apigateway",
+    "slug": "apigateway-control-access-to-api",
+    "url": "https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-control-access-to-api.md",
+    "title": "Control and manage access to REST APIs in API Gateway",
+    "file": "apigateway_apigateway-control-access-to-api.md"
+  },
+  {
+    "service": "apigateway",
+    "slug": "apigateway-resource-policies",
+    "url": "https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-resource-policies.md",
+    "title": "Control access to a REST API with API Gateway resource policies",
+    "file": "apigateway_apigateway-resource-policies.md"
+  },
+  {
+    "service": "apigateway",
+    "slug": "permissions",
+    "url": "https://docs.aws.amazon.com/apigateway/latest/developerguide/permissions.md",
+    "title": "Control access to a REST API with IAM permissions",
+    "file": "apigateway_permissions.md"
+  },
+  {
+    "service": "apigateway",
+    "slug": "api-gateway-request-throttling",
+    "url": "https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-request-throttling.md",
+    "title": "Throttle requests to your REST APIs for better throughput in API Gateway",
+    "file": "apigateway_api-gateway-request-throttling.md"
+  },
+  {
+    "service": "apigateway",
+    "slug": "api-gateway-caching",
+    "url": "https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-caching.md",
+    "title": "Cache settings for REST APIs in API Gateway",
+    "file": "apigateway_api-gateway-caching.md"
+  },
+  {
+    "service": "apigateway",
+    "slug": "how-to-cors",
+    "url": "https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-cors.md",
+    "title": "CORS for REST APIs in API Gateway",
+    "file": "apigateway_how-to-cors.md"
+  },
+  {
+    "service": "apigateway",
+    "slug": "api-gateway-api-integration-types",
+    "url": "https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-integration-types.md",
+    "title": "Choose an API Gateway API integration type",
+    "file": "apigateway_api-gateway-api-integration-types.md"
+  },
+  {
+    "service": "apigateway",
+    "slug": "api-gateway-swagger-extensions-integration",
+    "url": "https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-swagger-extensions-integration.md",
+    "title": "x-amazon-apigateway-integration object",
+    "file": "apigateway_api-gateway-swagger-extensions-integration.md"
   }
 ]

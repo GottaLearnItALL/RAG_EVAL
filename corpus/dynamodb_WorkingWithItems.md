@@ -322,7 +322,7 @@ Conditional writes check their conditions against the most recently updated vers
 
 Conditional writes are helpful in cases where multiple users attempt to modify the same item. Consider the following diagram, in which two users (Alice and Bob) are working with the same item from a DynamoDB table.
 
-![Users Alice and Bob attempt to modify an item with Id 1, demonstrating the need for conditional writes.](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/images/update-no-condition.png)
+![Users Alice and Bob attempt to modify an item with Id 1, demonstrating the need for conditional writes.](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/images/update-no-condition.png)
 
 
 Suppose that Alice uses the AWS CLI to update the `Price` attribute to 8.
@@ -357,7 +357,7 @@ To request a conditional `PutItem`, `DeleteItem`, or `UpdateItem`, you specify a
 
 Now consider the following diagram, showing how conditional writes would prevent Alice's update from being overwritten.
 
-![Conditional write preventing user Bob’s update from overwriting user Alice’s change to the same item.](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/images/update-yes-condition.png)
+![Conditional write preventing user Bob’s update from overwriting user Alice’s change to the same item.](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/images/update-yes-condition.png)
 
 
 Alice first tries to update `Price` to 8, but only if the current `Price` is 10.

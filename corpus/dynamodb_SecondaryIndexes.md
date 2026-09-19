@@ -3,6 +3,10 @@
 # Improving data access with secondary indexes in DynamoDB
 <a name="SecondaryIndexes"></a>
 
+Amazon DynamoDB supports two families of indexes, which serve different access patterns:
++ **Secondary indexes** — Give your application alternate keys to query by, in addition to the base table primary key. You read them with `Query` and `Scan`. This page describes secondary indexes.
++ **Vector indexes** — Enable similarity search over vector embeddings stored in your items. They are not an alternate key for lookups, and you read them with [SearchVectors](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_SearchVectors.html) rather than `Query` or `Scan`. For more information, see [Using vector indexes in DynamoDB](VectorSearch.md).
+
 Amazon DynamoDB provides fast access to items in a table by specifying primary key values. However, many applications might benefit from having one or more secondary (or alternate) keys available, to allow efficient access to data with attributes other than the primary key. To address this, you can create one or more secondary indexes on a table and issue `Query` or `Scan` requests against these indexes.
 
 A *secondary index* is a data structure that contains a subset of attributes from a table, along with an alternate key to support `Query` operations. You can retrieve data from the index using a `Query`, in much the same way as you use `Query` with a table. A table can have multiple secondary indexes, which give your applications access to many different query patterns.
@@ -21,7 +25,7 @@ DynamoDB supports two types of secondary indexes:
 
 For a comparison of global secondary indexes and local secondary indexes, see this video.
 
-[![AWS Videos](http://img.youtube.com/vi/BkEu7zBWge8/0.jpg)](http://www.youtube.com/watch?v=BkEu7zBWge8)
+[![AWS Videos](https://img.youtube.com/vi/BkEu7zBWge8/0.jpg)](https://www.youtube.com/watch?v=BkEu7zBWge8)
 
 
 **Topics**
@@ -31,7 +35,6 @@ For a comparison of global secondary indexes and local secondary indexes, see th
 You should consider your application's requirements when you determine which type of index to use. The following table shows the main differences between a global secondary index and a local secondary index.
 
 
-****  
 
 | Characteristic | Global secondary index | Local secondary index | 
 | --- | --- | --- | 

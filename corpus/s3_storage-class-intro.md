@@ -52,7 +52,7 @@ In addition to these three tiers, S3 Intelligent-Tiering offers two optional arc
 Only activate the Archive Access tier for 90 days if you want to bypass the Archive Instant Access tier. The Archive Access tier delivers slightly lower-cost storage with minute-to-hour retrieval times. The Archive Instant Access tier delivers millisecond access and high-throughput performance.
 Activate the Archive Access and Deep Archive Access tiers only if your objects can be accessed asynchronously by your application. If the object that you are retrieving is stored in the Archive Access or Deep Archive Access tiers, first restore the object by using `RestoreObject`.
 
-You can [move newly created data to S3 Intelligent-Tiering](https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-intelligent-tiering.html#moving-data-to-int-tiering), setting it as your default storage class. You can also choose to activate one or both of the archive access tiers by using the [https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketIntelligentTieringConfiguration.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketIntelligentTieringConfiguration.html) API operation, the AWS CLI, or the Amazon S3 console. For more information about using S3 Intelligent-Tiering and activating the archive access tiers, see [Using S3 Intelligent-Tiering](using-intelligent-tiering.md).
+You can [move newly created data to S3 Intelligent-Tiering](https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-intelligent-tiering.html#moving-data-to-int-tiering), setting it as your default storage class. You can also choose to activate one or both of the archive access tiers by using the [`PutBucketIntelligentTieringConfiguration`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketIntelligentTieringConfiguration.html) API operation, the AWS CLI, or the Amazon S3 console. For more information about using S3 Intelligent-Tiering and activating the archive access tiers, see [Using S3 Intelligent-Tiering](using-intelligent-tiering.md).
 
 To access objects in the Archive Access or Deep Archive Access tiers, you first need to restore them. For more information, see [Restoring objects from the S3 Intelligent-Tiering Archive Access and Deep Archive Access tiers](intelligent-tiering-managing.md#restore-data-from-int-tier-archive).
 
@@ -121,7 +121,6 @@ For more information about S3 on Outposts, see [What is S3 on Outposts](https://
 The following table compares the storage classes, including their availability, durability, minimum storage duration, and other considerations.
 
 
-****  
 
 | Storage class | Designed for | Durability (designed for) | Availability (designed for) | Availability Zones | Min storage duration | Min billable object size | Other considerations  | 
 | --- | --- | --- | --- | --- | --- | --- | --- | 

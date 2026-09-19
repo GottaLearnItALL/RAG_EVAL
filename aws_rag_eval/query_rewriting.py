@@ -1,8 +1,12 @@
 import anthropic
-
+from dotenv import load_dotenv
+import os
 from aws_rag_eval.eval.questions import load_questions
 
-client = anthropic.Anthropic()
+load_dotenv()
+
+API_KEY = os.getenv('ANTHROPIC_API_KEY')
+client = anthropic.Anthropic(api_key=API_KEY)
 
 
 def rewrite_query(question) -> str:

@@ -7,7 +7,7 @@ Several AWS services, such as Amazon Simple Storage Service (Amazon S3) and Amaz
 
 The following diagram shows clients invoking a Lambda function asynchronously. Lambda queues the events before sending them to the function.
 
-![Clients invoke a function asynchronously. Lambda queues events before sending them to the function](http://docs.aws.amazon.com/lambda/latest/dg/images/features-async.png)
+![Clients invoke a function asynchronously. Lambda queues events before sending them to the function.](https://docs.aws.amazon.com/lambda/latest/dg/images/features-async.png)
 
 
 For asynchronous invocation, Lambda places the event in a queue and returns a success response without additional information. A separate process reads events from the queue and sends them to your function.

@@ -14,6 +14,7 @@ All size measurements in DynamoDB use binary-based units. DynamoDB denotes 1 KB 
 + [Tables](#limits-tables)
 + [Global tables](#gt-limits-throughput)
 + [Secondary indexes](#limits-secondary-indexes)
++ [Vector indexes](#limits-vector-indexes)
 + [Projected secondary index attributes](#projected-secondary-index-attributes)
 + [DynamoDB Streams](#limits-dynamodb-streams)
 + [Import from Amazon S3](#import-limits)
@@ -133,6 +134,26 @@ You can define up to 5 local secondary indexes per table.
 
  There is a default quota of 20 global secondary indexes per table.
 
+## Vector indexes
+<a name="limits-vector-indexes"></a>
+
+The following quotas apply to vector indexes.
+
+
+| Quota | Default | Adjustable | 
+| --- | --- | --- | 
+| Vector indexes per table | 5 | Yes (contact AWS Support) | 
+| Maximum dimensions per vector index | 4,096 | No | 
+| Maximum TopK per SearchVectors request | 100 | No | 
+| Maximum partition keys (HASH) per vector index | 1 | No | 
+| Vector search rate per partition key | 1 GBps | Yes (contact AWS Support) | 
+| Vector index write rate per partition key | 10 MBps | Yes (contact AWS Support) | 
+| Number of inline filters per vector index | 18 | No | 
+| Maximum base table size for vector index creation without allowlisting | 600 GB | Yes (contact AWS Support) | 
+| Concurrent vector index creations or deletions per table | 1 | No | 
+
+**Example.** With a 768-dimensional embedding (such as Cohere Embed v3) and 1 KB of non-vector item data, each item is approximately 4 KB. At this item size, the per-partition-key throughput limits support approximately 250,000 vectors examined per second (1 GBps ÷ 4 KB) and 2,500 vector writes per second (10 MBps ÷ 4 KB). As the number of vectors in a partition grows, each search examines more data and you will approach the search limit sooner. Throughput scales linearly across partition key values. If your workload exceeds these limits, contact AWS Support.
+
 ## Projected secondary index attributes
 <a name="projected-secondary-index-attributes"></a>
 
@@ -171,7 +192,7 @@ Incremental export: DynamoDB Incremental Export to Amazon S3 can support up to 3
 ## Backup and restore
 <a name="limits-backup-restore"></a>
 
-DynamoDB supports up to 50 concurrent restores totaling 50 TB via DynamoDB on-demand or continuous backups. AWS Backup supports up to 50 concurrent restores totaling 25 TB.
+DynamoDB supports up to 50 concurrent restores totaling 50 TB through DynamoDB on-demand or continuous backups. AWS Backup supports up to 50 concurrent restores totaling 25 TB.
 
 ## Contributor Insights
 <a name="contributor-insights-quotas"></a>

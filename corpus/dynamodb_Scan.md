@@ -137,7 +137,6 @@ Each `Scan` response contains the `ScannedCount` and `Count` for the items that 
 You can `Scan` any table or secondary index. `Scan` operations consume read capacity units, as follows.
 
 
-****  
 
 | If you `Scan` a... | DynamoDB consumes read capacity units from... | 
 | --- | --- | 
@@ -180,7 +179,7 @@ To address these issues, the `Scan` operation can logically divide a table or se
 
 The following diagram shows how a multithreaded application performs a parallel `Scan` with three degrees of parallelism.
 
-![A multithreaded application that performs a parallel scan by dividing a table into three segments.](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/images/ParallelScan.png)
+![A multithreaded application that performs a parallel scan by dividing a table into three segments.](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/images/ParallelScan.png)
 
 
 

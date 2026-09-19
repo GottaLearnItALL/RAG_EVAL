@@ -278,7 +278,7 @@ When the `DeleteTable` operation concludes, the table no longer exists in Dynamo
 ## Using deletion protection
 <a name="WorkingWithTables.Basics.DeletionProtection"></a>
 
-You can protect a table from accidental deletion with the deletion protection property. Enabling this property for tables helps ensure that tables do not get accidentally deleted during regular table management operations by your administrators. This will help prevent disruption to your normal business operations.
+You can protect a table from accidental deletion with the deletion protection property. Enabling this property for tables helps make sure that tables do not get accidentally deleted during regular table management operations by your administrators. This will help prevent disruption to your normal business operations.
 
  The table owner or an authorized administrator controls the deletion protection property for each table. The deletion protection property for every table is off by default. This includes global replicas, and tables restored from backups. When deletion protection is disabled for a table, the table can be deleted by any users authorized by an Identity and Access Management (IAM) policy. When deletion protection is enabled for a table, it cannot be deleted by anyone. 
 

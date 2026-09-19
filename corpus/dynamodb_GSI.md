@@ -26,7 +26,7 @@ Some applications might need to perform many kinds of queries, using a variety o
 
 To illustrate, consider a table named `GameScores` that tracks users and scores for a mobile gaming application. Each item in `GameScores` is identified by a partition key (`UserId`) and a sort key (`GameTitle`). The following diagram shows how the items in the table would be organized. (Not all of the attributes are shown.)
 
-![GameScores table containing a list of user id, title, score, date, and wins/losses.](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/images/GSI_01.png)
+![GameScores table containing a list of user id, title, score, date, and wins/losses.](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/images/GSI_01.png)
 
 
 Now suppose that you wanted to write a leaderboard application to display top scores for each game. A query that specified the key attributes (`UserId` and `GameTitle`) would be very efficient. However, if the application needed to retrieve data from `GameScores` based on `GameTitle` only, it would need to use a `Scan` operation. As more items are added to the table, scans of all the data would become slow and inefficient. This makes it difficult to answer questions such as the following:
@@ -38,7 +38,7 @@ To speed up queries on non-key attributes, you can create a global secondary ind
 
 For example, you could create a global secondary index named `GameTitleIndex`, with a partition key of `GameTitle` and a sort key of `TopScore`. The base table's primary key attributes are always projected into an index, so the `UserId` attribute is also present. The following diagram shows what `GameTitleIndex` index would look like.
 
-![GameTitleIndex table containing a list of titles, scores, and user ids.](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/images/GSI_02.png)
+![GameTitleIndex table containing a list of titles, scores, and user ids.](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/images/GSI_02.png)
 
 
 Now you can query `GameTitleIndex` and easily obtain the scores for Meteor Blasters. The results are ordered by the sort key values, `TopScore`. If you set the `ScanIndexForward` parameter to false, the results are returned in descending order, so the highest score is returned first.
@@ -50,7 +50,6 @@ You can project other base table attributes into the index if you want. When you
 In a DynamoDB table, each key value must be unique. However, the key values in a global secondary index do not need to be unique. To illustrate, suppose that a game named Comet Quest is especially difficult, with many new users trying but failing to get a score above zero. The following is some data that could represent this.
 
 
-****  
 
 | UserId | GameTitle | TopScore | 
 | --- | --- | --- | 
@@ -58,9 +57,9 @@ In a DynamoDB table, each key value must be unique. However, the key values in a
 | 201 | Comet Quest | 0 | 
 | 301 | Comet Quest | 0 | 
 
-When this data is added to the `GameScores` table, DynamoDB propagates it to `GameTitleIndex`. If we then query the index using Comet Quest for `GameTitle` and 0 for `TopScore`, the following data is returned.
+When this data is added to the `GameScores` table, DynamoDB propagates it to `GameTitleIndex`. If you then query the index using Comet Quest for `GameTitle` and 0 for `TopScore`, the following data is returned.
 
-![Table containing a list of titles, top scores, and user ids.](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/images/GSI_05.png)
+![Table containing a list of titles, top scores, and user ids.](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/images/GSI_05.png)
 
 
 Only the items with the specified key values appear in the response. Within that set of data, the items are in no particular order. 
@@ -68,7 +67,6 @@ Only the items with the specified key values appear in the response. Within that
 A global secondary index only tracks data items where its key attributes actually exist. For example, suppose that you added another new item to the `GameScores` table, but only provided the required primary key attributes.
 
 
-****  
 
 | UserId | GameTitle | 
 | --- | --- | 
@@ -76,12 +74,12 @@ A global secondary index only tracks data items where its key attributes actuall
 
 Because you didn't specify the `TopScore` attribute, DynamoDB would not propagate this item to `GameTitleIndex`. Thus, if you queried `GameScores` for all the Comet Quest items, you would get the following four items.
 
-![Table containing a list of 4 titles, top scores, and user ids.](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/images/GSI_04.png)
+![Table containing a list of 4 titles, top scores, and user ids.](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/images/GSI_04.png)
 
 
 A similar query on `GameTitleIndex` would still return three items, rather than four. This is because the item with the nonexistent `TopScore` is not propagated to the index.
 
-![Table containing a list of 3 titles, top scores, and user ids.](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/images/GSI_05.png)
+![Table containing a list of 3 titles, top scores, and user ids.](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/images/GSI_05.png)
 
 
 ## Attribute projections
@@ -96,7 +94,7 @@ When you create a secondary index, you need to specify the attributes that will 
 
 In the previous diagram, `GameTitleIndex` has only one projected attribute: `UserId`. So while an application can efficiently determine the `UserId` of the top scorers for each game using `GameTitle` and `TopScore` in queries, it can't efficiently determine the highest ratio of wins vs. losses for the top scorers. To do so, the application would have to perform an additional query on the base table to fetch the wins and losses for each of the top scorers. A more efficient way to support queries on this data would be to project these attributes from the base table into the global secondary index, as shown in this diagram. 
 
-![Depiction of projecting non-key attributes into a GSI to support efficient querying.](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/images/GSI_06.png)
+![Depiction of projecting non-key attributes into a GSI to support efficient querying.](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/images/GSI_06.png)
 
 
 Because the non-key attributes `Wins` and `Losses` are projected into the index, an application can determine the wins vs. losses ratio for any game, or for any combination of game and user ID.

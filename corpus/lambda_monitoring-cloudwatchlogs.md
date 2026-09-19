@@ -3,12 +3,12 @@
 # Sending Lambda function logs to CloudWatch Logs
 <a name="monitoring-cloudwatchlogs"></a>
 
-By default, Lambda automatically captures logs for all function invocations and sends them to CloudWatch Logs, provided your function's execution role has the necessary permissions. These logs are, by default, stored in a log group named /aws/lambda/{{<function-name>}}. To enhance debugging, you can insert custom logging statements into your code, which Lambda will seamlessly integrate with CloudWatch Logs. If needed, you can configure your function to send logs to a different group using the Lambda console, AWS CLI, or Lambda API. See [Configuring CloudWatch log groups](monitoring-cloudwatchlogs-loggroups.md) to learn more.
+By default, Lambda automatically captures logs for all function invocations and sends them to CloudWatch Logs, provided your function's execution role has the necessary permissions. These logs are, by default, stored in a log group named /aws/lambda/{{<function-name>}}. To enhance debugging, you can insert custom logging statements into your code, which Lambda seamlessly integrates with CloudWatch Logs. If needed, you can configure your function to send logs to a different group using the Lambda console, AWS CLI, or Lambda API. See [Configuring CloudWatch log groups](monitoring-cloudwatchlogs-loggroups.md) to learn more.
 
 You can view logs for Lambda functions using the Lambda console, the CloudWatch console, the AWS Command Line Interface (AWS CLI), or the CloudWatch API. For more information, see to [Viewing CloudWatch logs for Lambda functions](monitoring-cloudwatchlogs-view.md).
 
 **Note**  
-It may take 5 to 10 minutes for logs to show up after a function invocation.
+It might take 5 to 10 minutes for logs to show up after a function invocation.
 
 ## Required IAM permissions
 <a name="monitoring-cloudwatchlogs-prereqs"></a>

@@ -14,7 +14,7 @@ If possible, you should avoid using a `Scan` operation on a large table or index
 
 Alternatively, you can design your application to use `Scan` operations in a way that minimizes the impact on your request rate. This can include modeling when it might be more efficient to use a global secondary index instead of a `Scan` operation. Further information on this process is in the following video. 
 
-[![AWS Videos](http://img.youtube.com/vi/LM84N-E_b_M/0.jpg)](http://www.youtube.com/watch?v=LM84N-E_b_M)
+[![AWS Videos](https://img.youtube.com/vi/LM84N-E_b_M/0.jpg)](https://www.youtube.com/watch?v=LM84N-E_b_M)
 
 
 ## Avoiding sudden spikes in read activity
@@ -28,7 +28,7 @@ The problem is not just the sudden increase in capacity units that the `Scan` us
 
 The following diagram illustrates the impact of a sudden spike of capacity unit usage by `Query` and `Scan` operations, and its impact on your other requests against the same table.
 
-![4 different scenarios showing provisioned throughput intervals, requests, and good and bad results on a table.](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/images/ThroughputIntervals.png)
+![4 different scenarios showing provisioned throughput intervals, requests, and good and bad results on a table.](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/images/ThroughputIntervals.png)
 
 
 As illustrated here, the usage spike can impact the table's provisioned throughput in several ways:

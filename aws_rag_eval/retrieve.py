@@ -16,22 +16,30 @@ def retrieve(
     rerank_on=False,
     rewrite_on=False,
     mmr_on=False,
+    hybrid_on=False,
+
 ) -> list[dict]:
+
     if rewrite_on:
         from aws_rag_eval.query_rewriting import rewrite_query
 
         question = rewrite_query(question)
 
     where = {"service": service} if service else None
-
-    results = collection.query(query_texts=[question], n_results=k, where=where)
-
+    fetch_k = 20 if (rerank_on or hybrid_on) else k
+    results = collection.query(query_texts=[question], n_results=fetch_k, where=where)
+    ids = results['ids'][0]
     docs = results["documents"][0]
     metas = results["metadatas"][0]
     dists = results["distances"][0]
     hits = []
-    for text, meta, dist in zip(docs, metas, dists):
-        hits.append({"text": text, "metadata": meta, "distance": dist})
+    for cid, text, meta, dist in zip(ids,docs, metas, dists):
+        hits.append({"id": cid, "text": text, "metadata": meta, "distance": dist})
+
+    if hybrid_on:
+        from aws_rag_eval.bm25_ import bm25_search
+        from aws_rag_eval.rrf import rrf
+        return rrf(hits, bm25_search(question, k=20), top_n=k)
 
     if rerank_on:
         from aws_rag_eval.rerank import rerank
@@ -40,7 +48,6 @@ def retrieve(
 
     if mmr_on:
         from aws_rag_eval.mmr import mmr
-
         results = collection.query(
             query_texts=[question],
             n_results=20,

@@ -23,7 +23,7 @@ Some applications only need to query data using the base table's primary key. Ho
 
 As an example, consider the `Thread` table. This table is useful for an application such as the [AWS discussion forums](https://forums.aws.amazon.com/). The following diagram shows how the items in the table would be organized. (Not all of the attributes are shown.)
 
-![Thread table containing a list of forum names, subjects, last post time, and number of replies.](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/images/LSI_01.png)
+![Thread table containing a list of forum names, subjects, last post time, and number of replies.](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/images/LSI_01.png)
 
 
 DynamoDB stores all of the items with the same partition key value continuously. In this example, given a particular `ForumName`, a `Query` operation could immediately locate all of the threads for that forum. Within a group of items with the same partition key value, the items are sorted by sort key value. If the sort key (`Subject`) is also provided in the query, DynamoDB can narrow down the results that are returned—for example, returning all of the threads in the "S3" forum that have a `Subject` beginning with the letter "a".
@@ -43,7 +43,7 @@ Suppose that an application needs to find all of the threads that have been post
 
 The following diagram shows a local secondary index named `LastPostIndex`. Note that the partition key is the same as that of the `Thread` table, but the sort key is `LastPostDateTime`.
 
-![LastPostIndex table containing a list of forum names, subjects, and last post time.](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/images/LSI_02.png)
+![LastPostIndex table containing a list of forum names, subjects, and last post time.](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/images/LSI_02.png)
 
 
 Every local secondary index must meet the following conditions:
@@ -69,7 +69,7 @@ Suppose that you wanted to populate a webpage with a list of all the threads in 
 
 The most efficient way to query this data and to avoid fetch operations would be to project the `Replies` attribute from the table into the local secondary index, as shown in this diagram.
 
-![LastPostIndex table containing a list of forum names, last post times, subjects, and replies.](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/images/LSI_03.png)
+![LastPostIndex table containing a list of forum names, last post times, subjects, and replies.](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/images/LSI_03.png)
 
 
 
@@ -86,7 +86,7 @@ In the previous diagram, the non-key attribute `Replies` is projected into `Last
 From an application's point of view, fetching additional attributes from the base table is automatic and transparent, so there is no need to rewrite any application logic. However, such fetching can greatly reduce the performance advantage of using a local secondary index.
 
 When you choose the attributes to project into a local secondary index, you must consider the tradeoff between provisioned throughput costs and storage costs:
-+ If you need to access just a few attributes with the lowest possible latency, consider projecting only those attributes into a local secondary index. The smaller the index, the less that it costs to store it, and the less your write costs are. If there are attributes that you occasionally need to fetch, the cost for provisioned throughput may well outweigh the longer-term cost of storing those attributes.
++ If you need to access just a few attributes with the lowest possible latency, consider projecting only those attributes into a local secondary index. The smaller the index, the less that it costs to store it, and the less your write costs are. If there are attributes that you occasionally need to fetch, the cost for provisioned throughput might well outweigh the longer-term cost of storing those attributes.
 + If your application frequently accesses some non-key attributes, you should consider projecting those attributes into a local secondary index. The additional storage costs for the local secondary index offset the cost of performing frequent table scans.
 + If you need to access most of the non-key attributes on a frequent basis, you can project these attributes—or even the entire base table— into a local secondary index. This gives you maximum flexibility and lowest provisioned throughput consumption, because no fetching would be required. However, your storage cost would increase, or even double if you are projecting all attributes.
 + If your application needs to query a table infrequently, but must perform many writes or updates against the data in the table, consider projecting *KEYS\_ONLY*. The local secondary index would be of minimal size, but would still be available when needed for query activity. 
@@ -228,7 +228,7 @@ In DynamoDB, an *item collection* is any group of items that have the same parti
 
 The following diagram shows the item collection for forum `S3`.
 
-![A DynamoDB item collection with table and Local Secondary Index items that have the same partition key value of S3.](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/images/LSI_04.png)
+![A DynamoDB item collection with table and Local Secondary Index items that have the same partition key value of S3.](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/images/LSI_04.png)
 
 
 In this diagram, the item collection consists of all the items in `Thread` and `LastPostIndex` where the `ForumName` partition key value is "S3". If there were other local secondary indexes on the table, any items in those indexes with `ForumName` equal to "S3" would also be part of the item collection.
@@ -262,7 +262,7 @@ The `SizeEstimateRangeGB` object shows that the size of this item collection is 
 
 The maximum size of any item collection for a table which has one or more local secondary indexes is 10 GB. This does not apply to item collections in tables without local secondary indexes, and also does not apply to item collections in global secondary indexes. Only tables that have one or more local secondary indexes are affected.
 
-If an item collection exceeds the 10 GB limit, DynamoDB may return an `ItemCollectionSizeLimitExceededException`, and you may not be able to add more items to the item collection or increase the sizes of items that are in the item collection. (Read and write operations that shrink the size of the item collection are still allowed.) You can still add items to other item collections.
+If an item collection exceeds the 10 GB limit, DynamoDB might return an `ItemCollectionSizeLimitExceededException`, and you might not be able to add more items to the item collection or increase the sizes of items that are in the item collection. (Read and write operations that shrink the size of the item collection are still allowed.) You can still add items to other item collections.
 
 To reduce the size of an item collection, you can do one of the following:
 + Delete any unnecessary items with the partition key value in question. When you delete these items from the base table, DynamoDB also removes any index entries that have the same partition key value.

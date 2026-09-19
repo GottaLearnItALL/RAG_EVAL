@@ -44,7 +44,7 @@ Objects that belong to a bucket that you create in a specific AWS Region never l
 ## Common general purpose bucket patterns
 <a name="bucket-patterns-overview"></a>
 
-When you build applications on Amazon S3, you can use unique general purpose buckets to separate different datasets or workloads. Depending on your use case, there are different design patterns and best practices for using general purpose buckets. For more information, see [Common general purpose bucket patterns for building applications on Amazon S3Bucket-per-use pattern](common-bucket-patterns.md).
+When you build applications on Amazon S3, you can use unique general purpose buckets to separate different datasets or workloads. Depending on your use case, there are different design patterns and best practices for using general purpose buckets. For more information, see [Common general purpose bucket patterns for building applications on Amazon S3](common-bucket-patterns.md).
 
 ## Permissions
 <a name="about-access-permissions-create-bucket"></a>

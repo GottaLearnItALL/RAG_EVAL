@@ -37,7 +37,7 @@ You can configure reserved concurrency settings for a function using the Lambda 
 
 You can reserve up to the **Unreserved account concurrency** value minus 100. The remaining 100 units of concurrency are for functions that aren't using reserved concurrency. For example, if your account has a concurrency limit of 1,000, you cannot reserve all 1,000 units of concurrency to a single function.
 
-![An error occurs if you try to reserve too much concurrency.](http://docs.aws.amazon.com/lambda/latest/dg/images/concurrency-reserve-over-limit.png)
+![An error occurs if you try to reserve too much concurrency.](https://docs.aws.amazon.com/lambda/latest/dg/images/concurrency-reserve-over-limit.png)
 
 
 Reserving concurrency for a function impacts the concurrency pool that's available to other functions. For example, if you reserve 100 units of concurrency for `function-a`, other functions in your account must share the remaining 900 units of concurrency, even if `function-a` doesn't use all 100 reserved concurrency units.
@@ -69,7 +69,7 @@ You should see output that looks like the following:
 
 If your function is currently serving traffic, you can easily view its concurrency metrics using [CloudWatch metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/working_with_metrics.html). Specifically, the `ConcurrentExecutions` metric shows you the number of concurrent invocations for each function in your account.
 
-![Graph showing concurrency for a function over time.](http://docs.aws.amazon.com/lambda/latest/dg/images/concurrency-concurrent-executions-metrics.png)
+![Graph showing concurrency for a function over time.](https://docs.aws.amazon.com/lambda/latest/dg/images/concurrency-concurrent-executions-metrics.png)
 
 
 The previous graph suggests that this function serves an average of 5 to 10 concurrent requests at any given time, and peaks at 20 requests on a typical day. Suppose that there are many other functions in your account. ** If this function is critical to your application and you don't want to drop any requests**, use a number greater than or equal to 20 as your reserved concurrency setting.
@@ -82,4 +82,4 @@ Concurrency = (average requests per second) * (average request duration in secon
 
 Multiplying average requests per second with the average request duration in seconds gives you a rough estimate of how much concurrency you need to reserve. You can estimate average requests per second using the `Invocation` metric, and the average request duration in seconds using the `Duration` metric. See [Using CloudWatch metrics with Lambda](monitoring-metrics.md) for more details.
 
-You should also be familiar with your upstream and downstream throughput constraints. While Lambda functions scale seamlessly with load, upstream and downstream dependencies may not have the same throughput capabilities. If you need to limit how high your function can scale, configure reserved concurrency on your function.
+You should also be familiar with your upstream and downstream throughput constraints. While Lambda functions scale seamlessly with load, upstream and downstream dependencies might not have the same throughput capabilities. If you need to limit how high your function can scale, configure reserved concurrency on your function.

@@ -1,0 +1,156 @@
+[
+    {
+      "id": 101,
+      "type": "confusable",
+      "question": "I want my function to run whenever a request hits my endpoint. How do I wire that up?",
+      "answer": "You create an API Gateway Lambda integration — either a proxy integration (AWS_PROXY) that passes the whole request through, or a custom integration where you map the request yourself.",
+      "source_file": "apigateway_set-up-lambda-integrations.md",
+      "why_hard": "Competes directly with lambda_lambda-invocation.md and lambda_invocation-sync.md — 'run my function' is Lambda vocabulary but the answer is API Gateway."
+    },
+    {
+      "id": 102,
+      "type": "confusable",
+      "question": "Something needs permission to call my function. Where do I set that up?",
+      "answer": "You grant it with a resource-based policy on the Lambda function, naming the calling service as principal with the invoke permission.",
+      "source_file": "lambda_access-control-resource-based.md",
+      "why_hard": "apigateway_permissions.md and apigateway_apigateway-resource-policies.md both talk about permissions and invoking — near-identical vocabulary, wrong service."
+    },
+    {
+      "id": 103,
+      "type": "confusable",
+      "question": "My backend threw an error. Does the caller get retried automatically or not?",
+      "answer": "It depends on the invocation model — asynchronous Lambda invocations are retried automatically by Lambda, while synchronous ones return the error to the caller who is responsible for retrying.",
+      "source_file": "lambda_invocation-async.md",
+      "why_hard": "apigateway_handle-errors-in-lambda-integration.md covers error handling in the API Gateway path — plausible but wrong."
+    },
+    {
+      "id": 104,
+      "type": "confusable",
+      "question": "How do I stop clients from hammering my service with too many requests?",
+      "answer": "API Gateway throttling lets you set steady-state rate and burst limits at the account, stage, method, or usage-plan level.",
+      "source_file": "apigateway_api-gateway-request-throttling.md",
+      "why_hard": "DynamoDB throughput/quota docs and Lambda concurrency docs both discuss request limits."
+    },
+    {
+      "id": 105,
+      "type": "confusable",
+      "question": "I need to cache responses so I stop hitting the backend for the same thing over and over. What are my options?",
+      "answer": "Enable API Gateway stage-level caching, which caches endpoint responses for a configurable TTL and cache capacity.",
+      "source_file": "apigateway_api-gateway-caching.md",
+      "why_hard": "Caching is discussed across services; DAX/DynamoDB and S3 docs may compete."
+    },
+    {
+      "id": 106,
+      "type": "keyword",
+      "question": "What's the difference between a TOKEN authorizer and a REQUEST authorizer?",
+      "answer": "A TOKEN authorizer receives the caller's identity in a bearer token from a header, while a REQUEST authorizer receives the full request context including headers, query strings, and path parameters.",
+      "source_file": "apigateway_apigateway-use-lambda-authorizer.md",
+      "why_hard": "Exact-term question — TOKEN and REQUEST are literal API values dense retrieval handles poorly."
+    },
+    {
+      "id": 107,
+      "type": "keyword",
+      "question": "What does AWS_PROXY mean as an integration type?",
+      "answer": "AWS_PROXY is the Lambda proxy integration type — the entire request is passed to the function as a structured event and the function's response is used directly as the method response.",
+      "source_file": "apigateway_api-gateway-api-integration-types.md",
+      "why_hard": "AWS_PROXY is a literal enum value — a BM25 showcase."
+    },
+    {
+      "id": 108,
+      "type": "keyword",
+      "question": "I'm seeing a 502 Bad Gateway from my Lambda integration. What causes that?",
+      "answer": "A 502 usually means the function returned a response that doesn't match the required format for a proxy integration, or the function errored out.",
+      "source_file": "apigateway_http-api-troubleshooting-lambda.md",
+      "why_hard": "Numeric error code — dense embeddings are weak on exact codes."
+    },
+    {
+      "id": 109,
+      "type": "keyword",
+      "question": "What is x-amazon-apigateway-integration used for?",
+      "answer": "It's an OpenAPI extension that defines the integration configuration for a method in an imported API definition.",
+      "source_file": "apigateway_api-gateway-swagger-extensions-integration.md",
+      "why_hard": "Literal extension name — pure keyword match territory."
+    },
+    {
+        "id": 110,
+        "type": "keyword",
+        "question": "What does ConditionalCheckFailedException mean when I'm writing an item?",
+        "answer": "It means the condition expression on your write evaluated to false, so the write was rejected — typically because the item's state didn't match what you expected.",
+        "source_file": "dynamodb_WorkingWithItems.md"
+    },
+    {
+      "id": 111,
+      "type": "confusable",
+      "question": "How do I let a browser on a different domain call my API?",
+      "answer": "Enable CORS on the API, which configures the required Access-Control-Allow-* headers and the OPTIONS preflight response.",
+      "source_file": "apigateway_how-to-cors.md",
+      "why_hard": "S3 also has CORS documentation — cross-service confusable."
+    },
+    {
+      "id": 112,
+      "type": "confusable",
+      "question": "When should I pick a REST API over an HTTP API?",
+      "answer": "REST APIs offer more features like request validation, usage plans, and caching, while HTTP APIs are cheaper and lower latency with a reduced feature set.",
+      "source_file": "apigateway_http-api-vs-rest.md",
+      "why_hard": "Generic comparison phrasing may pull overview/welcome pages instead."
+    },
+    {
+      "id": 113,
+      "type": "confusable",
+      "question": "I want the call to return immediately instead of waiting for the work to finish. How?",
+      "answer": "Set up asynchronous invocation of the backend Lambda function by setting the X-Amz-Invocation-Type header to Event in the integration request.",
+      "source_file": "apigateway_set-up-lambda-integration-async.md",
+      "why_hard": "lambda_invocation-async.md is the obvious dense match but the answer is the API Gateway integration doc."
+    },
+    {
+      "id": 114,
+      "type": "keyword",
+      "question": "How do I store configuration like a database endpoint without hardcoding it in my function?",
+      "answer": "Use Lambda environment variables, which are key-value pairs configured on the function and available to your code at runtime.",
+      "source_file": "lambda_configuration-envvars.md",
+      "why_hard": "Stage variables in API Gateway serve a similar purpose — direct confusable."
+    },
+    {
+      "id": 115,
+      "type": "confusable",
+      "question": "Can I query on a field that isn't part of the primary key, and does it cost me extra writes?",
+      "answer": "Yes, using a secondary index — but the index consumes additional write capacity because every write to the base table also updates the index.",
+      "source_file": "dynamodb_GSI.md",
+      "why_hard": "Overlaps heavily with LSI.md and SecondaryIndexes.md — the same ranking confusion that broke Q1 originally."
+    },
+    {
+      "id": 116,
+      "type": "keyword",
+      "question": "Which header do I set to make the backend call fire-and-forget?",
+      "answer": "Set X-Amz-Invocation-Type to Event in the integration request so Lambda is invoked asynchronously.",
+      "source_file": "apigateway_set-up-lambda-integration-async.md"
+    },
+    {
+      "id": 117,
+      "type": "keyword",
+      "question": "What is AWS_IAM as an authorization setting?",
+      "answer": "AWS_IAM means callers must sign requests with Signature Version 4 credentials, and access is controlled by IAM policies.",
+      "source_file": "apigateway_permissions.md"
+    },
+    {
+      "id": 118,
+      "type": "keyword",
+      "question": "What's the difference between the rate limit and the burst limit?",
+      "answer": "The rate limit is the steady-state requests per second, while the burst limit is the maximum bucket size for concurrent request spikes.",
+      "source_file": "apigateway_api-gateway-request-throttling.md"
+    },
+    {
+      "id": 119,
+      "type": "keyword",
+      "question": "Which Access-Control-Allow-Headers value do I need for a preflight request?",
+      "answer": "You must return the headers your API accepts, typically including Content-Type, X-Amz-Date, Authorization, X-Api-Key, and X-Amz-Security-Token.",
+      "source_file": "apigateway_how-to-cors.md"
+    },
+    {
+      "id": 120,
+      "type": "keyword",
+      "question": "My integration is failing — is it an ARN format problem?",
+      "answer": "An incorrectly formatted Lambda function ARN in the integration URI causes the integration to fail; the ARN must follow the expected format for the region and account.",
+      "source_file": "apigateway_http-api-troubleshooting-lambda.md"
+    }
+  ]

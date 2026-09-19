@@ -1,5 +1,7 @@
 # AWS Docs RAG — From-Scratch Retrieval + Evaluation Harness
 
+next: none — shipped on Render, posted on LinkedIn.
+
 A retrieval-augmented generation (RAG) system built over AWS developer
 documentation (DynamoDB, Lambda, S3), with a hand-written evaluation harness
 that measures retrieval quality, generation quality, and the effect of four
